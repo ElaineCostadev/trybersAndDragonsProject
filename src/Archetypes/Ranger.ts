@@ -5,8 +5,8 @@ class Ranger extends Archetype {
   static counter = 0;
   private _type: EnergyType;
 
-  constructor(name: string, special: number, cost: number) {
-    super(name, special, cost);
+  constructor(name: string) {
+    super(name);
     this._type = 'stamina';
     Ranger.counter += 1;
   }
