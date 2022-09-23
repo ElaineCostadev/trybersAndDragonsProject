@@ -68,10 +68,10 @@ class Character implements Fighter, SimpleFighter {
   }
   
   receiveDamage(attackPoints: number): number {
-    const damage = this._defense - attackPoints;
+    const damage = attackPoints - this._defense;
+    // if (this._defense >= attackPoints) return this._lifePoints;
 
     if (damage > 0) this._lifePoints -= damage;
-
     if (this._lifePoints <= 0) this._lifePoints = -1;
 
     return this._lifePoints;
