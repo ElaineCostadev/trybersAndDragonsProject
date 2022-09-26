@@ -6,7 +6,6 @@ class PVE extends Battle {
   private _monsters: Fighter[] | SimpleFighter[];
   constructor(fighter: Fighter, monsters: Fighter[] | SimpleFighter[]) {
     super(fighter);
-    super.fight();
     this._fighter = fighter;
     this._monsters = monsters;
   }
@@ -20,13 +19,14 @@ class PVE extends Battle {
   } */
 
   fight(): number {
-    this._monsters.forEach((eachMonster) => {
-      this._fighter.attack(eachMonster);
-      eachMonster.attack(this._fighter);
-      if (this._fighter.lifePoints === -1 || eachMonster.lifePoints === -1) {
-        return super.fight();
-      }
-    });
+    // ajuda do Leo - mentoria - refatoração
+    while (this._fighter.lifePoints !== -1 && this._monsters
+      .some((eachMonster) => eachMonster.lifePoints !== -1)) {
+      this._monsters.forEach((eachMonster) => {
+        eachMonster.attack(this._fighter);
+        this._fighter.attack(eachMonster);
+      });
+    }
     return super.fight();
   }
 }
